@@ -112,10 +112,11 @@ tmux_conf_theme_window_bg="default"
 # 突出显示的焦点窗格，可能的值有：
 #   - true
 #   - false (default)
-tmux_conf_theme_highlight_focused_pane=true
+tmux_conf_theme_highlight_focused_pane=false
 
 # 专注的窗格颜色：
-tmux_conf_theme_focused_pane_bg="$tmux_conf_theme_colour_2"
+# tmux_conf_theme_focused_pane_bg="$tmux_conf_theme_colour_2"
+tmux_conf_theme_focused_pane_bg="$tmux_conf_theme_colour_14"
 
 # 窗格边框样式，可能的取值有：
 #   - thin (default)
@@ -215,14 +216,14 @@ tmux_conf_theme_window_status_last_bg="$tmux_conf_theme_colour_2"
 tmux_conf_theme_window_status_last_attr="none"
 
 # 状态 左/右 部分 分隔符
-tmux_conf_theme_left_separator_main=""
-tmux_conf_theme_left_separator_sub="|"
-tmux_conf_theme_right_separator_main=""
-tmux_conf_theme_right_separator_sub="|"
-#tmux_conf_theme_left_separator_main='\uE0B0'  # /!\ you don't need to install Powerline
-#tmux_conf_theme_left_separator_sub='\uE0B1'   #   you only need fonts patched with
-#tmux_conf_theme_right_separator_main='\uE0B2' #   Powerline symbols or the standalone
-#tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see README.md
+#tmux_conf_theme_left_separator_main=""
+#tmux_conf_theme_left_separator_sub="|"
+#tmux_conf_theme_right_separator_main=""
+#tmux_conf_theme_right_separator_sub="|"
+tmux_conf_theme_left_separator_main='\uE0B0'  # /!\ you don't need to install Powerline
+tmux_conf_theme_left_separator_sub='\uE0B1'   #   you only need fonts patched with
+tmux_conf_theme_right_separator_main='\uE0B2' #   Powerline symbols or the standalone
+tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see README.md
 
 # 状态 左/右 内容:
 #   - separate main sections with "|"
@@ -374,7 +375,8 @@ tmux_conf_copy_to_os_clipboard=true
 # bind c new-window -c '#{pane_current_path}' #!important
 
 # move status line to top
-#set -g status-position top
+# 状态栏设置到顶部
+set -g status-position top
 
 
 # -- tpm -----------------------------------------------------------------------
@@ -402,19 +404,39 @@ tmux_conf_update_plugins_on_reload=true
 #   - false
 tmux_conf_uninstall_plugins_on_reload=true
 
-# /!\ the tpm bindings differ slightly from upstream:
+# /!\ TPM绑定与上游略有不同。
 #   - installing plugins: <prefix> + I
 #   - uninstalling plugins: <prefix> + Alt + u
 #   - updating plugins: <prefix> + u
 
-# /!\ do not add set -g @plugin 'tmux-plugins/tpm'
-# /!\ do not add run '~/.tmux/plugins/tpm/tpm'
+# /!\ 不要添加 set -g @plugin 'tmux-plugins/tpm'
+# /!\ 不要添加运行'~/.tmux/plugins/tpm/tpm'
 
-# to enable a plugin, use the 'set -g @plugin' syntax:
-# visit https://github.com/tmux-plugins for available plugins
+# 要启用插件，请使用“set -g @plugin”语法：
+# 访问 https://github.com/tmux-plugins 查看可用插件
 #set -g @plugin 'tmux-plugins/tmux-copycat'
-#set -g @plugin 'tmux-plugins/tmux-cpu'
-#set -g @plugin 'tmux-plugins/tmux-resurrect'
+
+#重启恢复插件
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+
+#catppuccic插件
+#set -g @plugin 'catppuccin/tmux'
+#set -g @catppuccin_flavour 'mocha' # or frappe, macchiato, mocha
+#set -g @catppuccin_window_left_separator ""
+#set -g @catppuccin_window_right_separator " "
+#set -g @catppuccin_window_middle_separator " █"
+#set -g @catppuccin_window_number_position "right"
+#set -g @catppuccin_window_default_fill "number"
+#set -g @catppuccin_window_default_text "#W"
+#set -g @catppuccin_window_current_fill "number"
+#set -g @catppuccin_window_current_text "#W"
+#set -g @catppuccin_status_modules_right "directory user host session"
+#set -g @catppuccin_status_left_separator  " "
+#set -g @catppuccin_status_right_separator ""
+#set -g @catppuccin_status_fill "icon"
+#set -g @catppuccin_status_connect_separator "no"
+#set -g @catppuccin_directory_text "#{pane_current_path}"
+
 #set -g @plugin 'tmux-plugins/tmux-continuum'
 #set -g @continuum-restore 'on'
 
